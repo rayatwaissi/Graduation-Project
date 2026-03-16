@@ -1,0 +1,267 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="CommonBar.master.vb" Inherits="GraduationProject_DocHub_.CommonBar" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>DocHub</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Inter,-apple-system;
+            margin: 0;
+        }
+
+        .Topbar {
+            height: 70px;
+            color: white;
+            background-color: #0f70b7;
+            padding-left: 20px;
+            padding-top: 5px;
+        }
+
+        .layout {
+            display: flex;
+        }
+
+
+        .sideBar {
+            width: 200px;
+            height: 100vh;
+            padding-top: 20px;
+            background-color: #0f70b7;
+        }
+
+        .menuBtn {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #1d2125;
+            text-align: left;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .menuItem:hover {
+            background: #163A66;
+            cursor: pointer;
+        }
+
+
+
+        .content {
+            flex: 1;
+            background: #f7f9fb;
+            padding: 30px;
+        }
+
+        .menuItem {
+            padding: 12px 20px;
+        }
+
+
+            .menuItem i {
+                width: 18px;
+                padding-right: 5px;
+            }
+
+        .title {
+            padding-left: 15px;
+            font-size: 17px;
+            color: rgb(150 159 171);
+        }
+
+        .usersection {
+            position: absolute;
+            bottom: 10px;
+            width: 180px;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 30px;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #ffffff;
+        }
+
+        .userAvater {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #295d7d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .userinfo {
+            margin-left: 10px;
+        }
+
+        .username {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+        }
+
+        .userrole {
+            color: #a9b1bc;
+            font-size: 12px;
+        }
+
+
+        .SignOut {
+            color: #a9b1bc;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .SignOut:hover {
+                color: white;
+            }
+
+        .signoutSection {
+            position: absolute;
+            bottom: 10px;
+            margin-top: 50px;
+            padding-left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+
+<body>
+    <form id="form1" runat="server">
+        <div class="Topbar">
+            <h1>DocHub</h1>
+        </div>
+
+        <div class="layout">
+
+            <div class="sideBar">
+                <div class="title">
+                    <asp:Label ID="Label2" runat="server" Text="MAIN"></asp:Label>
+                </div>
+                <asp:Panel ID="dashboard" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-solid fa-tachograph-digital" style="color: rgb(166, 159, 159);"></i>
+                        <asp:LinkButton ID="lnkDashboard" runat="server" CssClass="menuBtn">Dashboard</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="Dlibrary" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-solid fa-folder" style="color: rgb(255, 212, 59);"></i>
+                        <asp:LinkButton ID="lnkDocLib" runat="server" CssClass="menuBtn">Document Library</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="UploadD" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-solid fa-upload" style="color: rgb(166, 159, 159);"></i>
+                        <asp:LinkButton ID="lnkUpload" runat="server" CssClass="menuBtn">Upload Document</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="VersionH" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-solid fa-file-lines" style="color: rgb(255, 212, 59);"></i>
+                        <asp:LinkButton ID="lnkVersion" runat="server" CssClass="menuBtn">Version History</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+
+                <asp:Panel ID="search" runat="server">
+
+                    <div class="menuItem">
+                        <i class="fa-brands fa-sistrix" style="color: rgb(166, 159, 159);"></i>
+                        <asp:LinkButton ID="lnkSearch" runat="server" CssClass="menuBtn">Search</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="TrackTask" runat="server">
+
+                    <div class="menuItem">
+                        <i class="fa-solid fa-clipboard-check" style="color: rgb(255, 212, 59);"></i>
+                        <asp:LinkButton ID="lnkTrack" runat="server" CssClass="menuBtn">Track Task</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                 <asp:Panel ID="NewTask" runat="server">
+     <div class="menuItem">
+<i class="fa-solid fa-square-plus" style="color: rgb(166, 159, 159);"></i>
+         <asp:LinkButton ID="lnknewRequest" runat="server" CssClass="menuBtn">New Task</asp:LinkButton>
+     </div>
+ </asp:Panel>
+                <asp:Panel ID="notid" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-solid fa-bell" style="color: rgb(255, 212, 59);"></i>
+                        <asp:LinkButton ID="lnkNotifications" runat="server" CssClass="menuBtn">Notifications</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="myTask" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-regular fa-rectangle-list" style="color: rgb(166, 159, 159);"></i>
+                        <asp:LinkButton ID="lnkmyTask" runat="server" CssClass="menuBtn">My Task</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <div class="title">
+                    <asp:Label ID="Label1" runat="server" Text="MANAGEMENT"></asp:Label>
+                </div>
+                <asp:Panel ID="users" runat="server">
+
+                    <div class="menuItem">
+                        <i class="fa-solid fa-user-group" style="color: rgb(166, 159, 159);"></i>
+                        <asp:LinkButton ID="lnkUsers" runat="server" CssClass="menuBtn">Users</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="RBin" runat="server">
+                    <div class="menuItem">
+                        <i class="fa-solid fa-trash-can" style="color: rgb(166, 159, 159);"></i>
+                        <asp:LinkButton ID="lnkRecycleBin" runat="server" CssClass="menuBtn">Recycle Bin</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+
+                <div class="usersection">
+                    <div class="userAvater">
+                        <asp:Label ID="lblinitials" runat="server" Text="DA"></asp:Label>
+                    </div>
+                    <div class="userinfo">
+                        <asp:Label ID="lblname" runat="server" Text="Dr. Ahmad" CssClass="username"></asp:Label>
+                        <asp:Label ID="lblURole" runat="server" Text="Department Head" CssClass="userrole"></asp:Label>
+
+                    </div>
+
+                </div>
+                <div class="signoutSection">
+                    <i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(166, 159, 159);"></i>
+                    <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" CssClass="SignOut"></asp:LinkButton>
+                </div>
+
+            </div>
+            <div class="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </form>
+</body>
+</html>
+
