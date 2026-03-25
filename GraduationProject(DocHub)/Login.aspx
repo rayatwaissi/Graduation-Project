@@ -1,13 +1,15 @@
-﻿<%@ Page Language="VB" AutoEventWireup="true" 
+﻿<%@ Page Language="VB"
+    AutoEventWireup="true" 
     CodeBehind="Login.aspx.vb" 
-    Inherits="GraduationProject_DocHub_.Login" %>
+    Inherits="GraduationProject_DocHub_.Login"
+%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>DocHub — Login</title>
+    <title>Login</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
