@@ -14,40 +14,13 @@ Option Explicit On
 Partial Public Class CommonBar
 
     '''<summary>
-    '''head control.
+    '''commonBar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
-
-    '''<summary>
-    '''form1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''dashboard control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dashboard As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents commonBar As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
     '''lnkDashboard control.
@@ -59,15 +32,6 @@ Partial Public Class CommonBar
     Protected WithEvents lnkDashboard As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Dlibrary control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Dlibrary As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lnkDocLib control.
     '''</summary>
     '''<remarks>
@@ -75,15 +39,6 @@ Partial Public Class CommonBar
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkDocLib As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''UploadD control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UploadD As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''lnkUpload control.
@@ -95,15 +50,6 @@ Partial Public Class CommonBar
     Protected WithEvents lnkUpload As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''VersionH control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents VersionH As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lnkVersion control.
     '''</summary>
     '''<remarks>
@@ -111,15 +57,6 @@ Partial Public Class CommonBar
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkVersion As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''search control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents search As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''lnkSearch control.
@@ -131,15 +68,6 @@ Partial Public Class CommonBar
     Protected WithEvents lnkSearch As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''TrackTask control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TrackTask As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lnkTrack control.
     '''</summary>
     '''<remarks>
@@ -147,15 +75,6 @@ Partial Public Class CommonBar
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkTrack As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''NewTask control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents NewTask As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''lnknewRequest control.
@@ -167,15 +86,6 @@ Partial Public Class CommonBar
     Protected WithEvents lnknewRequest As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''notid control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents notid As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lnkNotifications control.
     '''</summary>
     '''<remarks>
@@ -183,15 +93,6 @@ Partial Public Class CommonBar
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkNotifications As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''myTask control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents myTask As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''lnkmyTask control.
@@ -203,24 +104,6 @@ Partial Public Class CommonBar
     Protected WithEvents lnkmyTask As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''users control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents users As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lnkUsers control.
     '''</summary>
     '''<remarks>
@@ -230,15 +113,6 @@ Partial Public Class CommonBar
     Protected WithEvents lnkUsers As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''RBin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RBin As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''lnkRecycleBin control.
     '''</summary>
     '''<remarks>
@@ -246,15 +120,6 @@ Partial Public Class CommonBar
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkRecycleBin As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lblinitials control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblinitials As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblname control.

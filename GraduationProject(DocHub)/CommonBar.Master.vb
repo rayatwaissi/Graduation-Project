@@ -8,4 +8,8 @@
     Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
 
     End Sub
+
+    Protected Sub lnkDocLib_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

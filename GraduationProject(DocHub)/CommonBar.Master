@@ -4,13 +4,15 @@
     Inherits="GraduationProject_DocHub_.CommonBar"
 %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
     <style>
         body {
-            font-family: Inter,-apple-system;
+            font-family: 'DM Sans', sans-serif;
             margin: 0;
         }
 
@@ -18,30 +20,29 @@
             height: 70px;
             color: white;
             background-color: #0f70b7;
-            padding-left: 20px;
-            padding-top: 5px;
+            padding: 10px 20px;
         }
 
         .layout {
             display: flex;
         }
 
-
         .sideBar {
             width: 200px;
             height: 100vh;
-            padding-top: 20px;
             background-color: #0f70b7;
+            border-top: 3px outset #0b5d99;
+            display: flex;
+            flex-direction: column;
         }
 
-        .menuBtn {
-            width: 100%;
-            background: none;
-            border: none;
-            color: #1d2125;
-            text-align: left;
-            font-size: 16px;
-            text-decoration: none;
+        .menu {
+            flex: 1;
+            padding-top: 20px;
+        }
+
+        .menuItem {
+            padding: 15px 20px;
         }
 
         .menuItem:hover {
@@ -49,179 +50,133 @@
             cursor: pointer;
         }
 
+        .menuBtn {
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            font-size: 16px;
+            text-decoration: none;
+        }
 
+        .usersection {
+            border-top: 3px outset #0b5d99;
+            padding: 20px;
+        }
+
+        .username {
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+        }
+
+        .userrole {
+            font-size: 12px;
+            color: #f0f0f0;
+        }
+
+        .signoutSection {
+            padding: 0 20px 20px 20px;
+        }
+
+        .SignOut {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .SignOut:hover {
+            color: red;
+        }
 
         .content {
             flex: 1;
             background: #f7f9fb;
             padding: 30px;
         }
-
-        .menuItem {
-            padding: 12px 20px;
-        }
-
-
-            .menuItem i {
-                width: 18px;
-                padding-right: 5px;
-            }
-
-        .title {
-            padding-left: 15px;
-            font-size: 17px;
-            color: rgb(150 159 171);
-        }
-
-        .usersection {
-            position: absolute;
-            bottom: 10px;
-            width: 180px;
-            padding-right: 20px;
-            padding-left: 20px;
-            padding-top: 20px;
-            padding-bottom: 30px;
-            display: flex;
-            align-items: center;
-            border-top: 1px solid #ffffff;
-        }
-
-        .userinfo {
-            margin-left: 10px;
-        }
-
-        .username {
-            display: block;
-            font-weight: bold;
-            font-size: 14px;
-            color: white;
-        }
-
-        .userrole {
-            color: #a9b1bc;
-            font-size: 12px;
-        }
-
-
-        .SignOut {
-            color: #a9b1bc;
-            font-size: 13px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-            .SignOut:hover {
-                color: white;
-            }
-
-        .signoutSection {
-            position: absolute;
-            bottom: 10px;
-            margin-top: 50px;
-            padding-left: 40px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
     </style>
+
 </head>
 
 <body>
-    <form id="commonBar" runat="server">
-        <div class="topBar">
-            <h1>DocHub</h1>
-        </div>
-        <div class="layout">
-            <div class="sideBar">
-                 <div class="menuItem">
-                      <asp:Panel ID="dashboard" runat="server">
-                        <asp:LinkButton ID="lnkDashboard" runat="server" CssClass="menuBtn">Dashboard</asp:LinkButton>
-                      </asp:Panel>
-                 </div>
-              
+<form id="commonBar" runat="server">
+
+    <div class="topBar">
+        <h1>DocHub</h1>
+    </div>
+
+    <div class="layout">
+        <div class="sideBar">
+            <div class="menu">
+
                 <div class="menuItem">
-                    <asp:Panel ID="Dlibrary" runat="server">
-                        <asp:LinkButton ID="lnkDocLib" runat="server" CssClass="menuBtn">Document Library</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnkDashboard" runat="server" CssClass="menuBtn">Dashboard</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                    <asp:Panel ID="UploadD" runat="server">
-                        <asp:LinkButton ID="lnkUpload" runat="server" CssClass="menuBtn">Upload Document</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnkDocLib" runat="server" CssClass="menuBtn">Document Library</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                    <asp:Panel ID="VersionH" runat="server">
-                        <asp:LinkButton ID="lnkVersion" runat="server" CssClass="menuBtn">Version History</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnkUpload" runat="server" CssClass="menuBtn">Upload Document</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                     <asp:Panel ID="search" runat="server">
-                        <asp:LinkButton ID="lnkSearch" runat="server" CssClass="menuBtn">Search</asp:LinkButton>
-                     </asp:Panel>
+                    <asp:LinkButton ID="lnkVersion" runat="server" CssClass="menuBtn">Version History</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                    <asp:Panel ID="TrackTask" runat="server">
-                        <asp:LinkButton ID="lnkTrack" runat="server" CssClass="menuBtn">Track Task</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnkSearch" runat="server" CssClass="menuBtn">Search</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                    <asp:Panel ID="NewTask" runat="server">
-                        <asp:LinkButton ID="lnknewRequest" runat="server" CssClass="menuBtn">New Task</asp:LinkButton>
-                    </asp:Panel>
-                </div>
-                 
-                <div class="menuItem">
-                    <asp:Panel ID="notid" runat="server">
-                        <asp:LinkButton ID="lnkNotifications" runat="server" CssClass="menuBtn">Notifications</asp:LinkButton>
-                    </asp:Panel>
-                </div>
-                
-                <div class="menuItem">
-                    <asp:Panel ID="myTask" runat="server">
-                        <asp:LinkButton ID="lnkmyTask" runat="server" CssClass="menuBtn">My Task</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnkTrack" runat="server" CssClass="menuBtn">Track Task</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                    <asp:Panel ID="users" runat="server">
-                        <asp:LinkButton ID="lnkUsers" runat="server" CssClass="menuBtn">Users</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnknewRequest" runat="server" CssClass="menuBtn">New Task</asp:LinkButton>
                 </div>
 
                 <div class="menuItem">
-                    <asp:Panel ID="RBin" runat="server">
-                        <asp:LinkButton ID="lnkRecycleBin" runat="server" CssClass="menuBtn">Recycle Bin</asp:LinkButton>
-                    </asp:Panel>
+                    <asp:LinkButton ID="lnkNotifications" runat="server" CssClass="menuBtn">Notifications</asp:LinkButton>
                 </div>
 
-                <!-- FOOTER-->
-                <div class="usersection">               
-                    <div class="userinfo">
-                        <asp:Label ID="lblname" runat="server" Text="Dr. Ahmad" CssClass="username"></asp:Label>
-                        <asp:Label ID="lblURole" runat="server" Text="Department Head" CssClass="userrole"></asp:Label>
-                    </div>
+                <div class="menuItem">
+                    <asp:LinkButton ID="lnkmyTask" runat="server" CssClass="menuBtn">My Task</asp:LinkButton>
                 </div>
-                <div class="signoutSection">
-                    <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" CssClass="SignOut"></asp:LinkButton>
-                </div>
-                <!-- END FOOTER-->
 
+                <div class="menuItem">
+                    <asp:LinkButton ID="lnkUsers" runat="server" CssClass="menuBtn">Users</asp:LinkButton>
+                </div>
+
+                <div class="menuItem">
+                    <asp:LinkButton ID="lnkRecycleBin" runat="server" CssClass="menuBtn">Recycle Bin</asp:LinkButton>
+                </div>
 
             </div>
-            <!-- THE CONTENT OF THE PAGE-->
-            <div class="content">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
+
+            <!-- 🔥 FOOTER -->
+            <div class="usersection">
+                <asp:Label ID="lblname" runat="server" Text="Dr. Ahmad" CssClass="username"></asp:Label><br />
+                <asp:Label ID="lblURole" runat="server" Text="Department Head" CssClass="userrole"></asp:Label>
             </div>
 
+            <div class="signoutSection">
+                <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" CssClass="SignOut"></asp:LinkButton>
+            </div>
 
         </div>
-    </form>
+
+        <!-- Content -->
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+        </div>
+
+    </div>
+
+</form>
 </body>
 </html>
-
