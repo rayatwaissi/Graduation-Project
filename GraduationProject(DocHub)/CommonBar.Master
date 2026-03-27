@@ -1,15 +1,16 @@
 ﻿<%@ Master Language="VB"
     AutoEventWireup="true"
     CodeBehind="CommonBar.master.vb"
-    Inherits="GraduationProject_DocHub_.CommonBar"
-%>
+    Inherits="GraduationProject_DocHub_.CommonBar" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-
+     <title>DocHub</title>
+     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+     <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
             font-family: 'DM Sans', sans-serif;
@@ -29,7 +30,7 @@
 
         .sideBar {
             width: 200px;
-            height: 100vh;
+            height: auto;
             background-color: #0f70b7;
             border-top: 3px outset #0b5d99;
             display: flex;
@@ -45,10 +46,10 @@
             padding: 15px 20px;
         }
 
-        .menuItem:hover {
-            background: #163A66;
-            cursor: pointer;
-        }
+            .menuItem:hover {
+                background: #163A66;
+                cursor: pointer;
+            }
 
         .menuBtn {
             width: 100%;
@@ -88,9 +89,9 @@
             cursor: pointer;
         }
 
-        .SignOut:hover {
-            color: red;
-        }
+            .SignOut:hover {
+                color: red;
+            }
 
         .content {
             flex: 1;
@@ -102,81 +103,86 @@
 </head>
 
 <body>
-<form id="commonBar" runat="server">
+    <form id="commonBar" runat="server">
 
-    <div class="topBar">
-        <h1>DocHub</h1>
-    </div>
+        <div class="topBar">
+            <h1>DocHub</h1>
+        </div>
 
-    <div class="layout">
-        <div class="sideBar">
-            <div class="menu">
+        <div class="layout">
+            <div class="sideBar">
+                <div class="menu">
+                    <asp:Panel ID="dashboard" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkDashboard" runat="server" CssClass="menuBtn">Dashboard</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
 
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkDashboard" runat="server" CssClass="menuBtn">Dashboard</asp:LinkButton>
+                    <asp:Panel ID="Dlibrary" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkDocLib" runat="server" CssClass="menuBtn">Document Library</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="UploadD" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkUpload" runat="server" CssClass="menuBtn">Upload Document</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="TrackTask" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkTrack" runat="server" CssClass="menuBtn">Track Task</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="NewTask" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnknewRequest" runat="server" CssClass="menuBtn">New Task</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="notid" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkNotifications" runat="server" CssClass="menuBtn">Notifications</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="myTask" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkmyTask" runat="server" CssClass="menuBtn">My Task</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="users" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkUsers" runat="server" CssClass="menuBtn">Users</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="RBin" runat="server">
+                        <div class="menuItem">
+                            <asp:LinkButton ID="lnkRecycleBin" runat="server" CssClass="menuBtn">Recycle Bin</asp:LinkButton>
+                        </div>
+                    </asp:Panel>
                 </div>
 
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkDocLib" runat="server" CssClass="menuBtn">Document Library</asp:LinkButton>
+                <!-- 🔥 FOOTER -->
+                <div class="usersection">
+                    <asp:Label ID="lblname" runat="server" Text="Dr. Ahmad" CssClass="username"></asp:Label><br />
+                    <asp:Label ID="lblURole" runat="server" Text="Department Head" CssClass="userrole"></asp:Label>
                 </div>
 
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkUpload" runat="server" CssClass="menuBtn">Upload Document</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkVersion" runat="server" CssClass="menuBtn">Version History</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkSearch" runat="server" CssClass="menuBtn">Search</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkTrack" runat="server" CssClass="menuBtn">Track Task</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnknewRequest" runat="server" CssClass="menuBtn">New Task</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkNotifications" runat="server" CssClass="menuBtn">Notifications</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkmyTask" runat="server" CssClass="menuBtn">My Task</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkUsers" runat="server" CssClass="menuBtn">Users</asp:LinkButton>
-                </div>
-
-                <div class="menuItem">
-                    <asp:LinkButton ID="lnkRecycleBin" runat="server" CssClass="menuBtn">Recycle Bin</asp:LinkButton>
+                <div class="signoutSection">
+                    <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" CssClass="SignOut"></asp:LinkButton>
                 </div>
 
             </div>
 
-            <!-- 🔥 FOOTER -->
-            <div class="usersection">
-                <asp:Label ID="lblname" runat="server" Text="Dr. Ahmad" CssClass="username"></asp:Label><br />
-                <asp:Label ID="lblURole" runat="server" Text="Department Head" CssClass="userrole"></asp:Label>
-            </div>
-
-            <div class="signoutSection">
-                <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" CssClass="SignOut"></asp:LinkButton>
+            <!-- Content -->
+            <div class="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
             </div>
 
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
-        </div>
-
-    </div>
-
-</form>
+    </form>
 </body>
 </html>
