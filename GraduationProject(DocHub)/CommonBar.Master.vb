@@ -15,6 +15,5 @@
 
     Protected Sub btnSignOut_Click(sender As Object, e As EventArgs) Handles btnSignOut.Click
         Response.Redirect("Login.aspx")
-
     End Sub
 End Class
