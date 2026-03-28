@@ -31,7 +31,7 @@
             width: 200px;
             height: 100vh;
             background-color: #0f70b7;
-            border-top: 3px outset #0b5d99;
+            border-top: 3px outset #1167a6;
             display: flex;
             flex-direction: column;
         }
@@ -61,7 +61,7 @@
         }
 
         .usersection {
-            border-top: 3px outset #0b5d99;
+            border-top: 3px outset #1167a6;
             padding: 20px;
         }
 
