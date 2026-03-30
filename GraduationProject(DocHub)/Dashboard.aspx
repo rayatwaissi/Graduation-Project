@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="vb"
     AutoEventWireup="true"
     MasterPageFile="~/CommonBar.Master"
-    CodeBehind="Dashboardaspx.aspx.vb"
+    CodeBehind="Dashboard.aspx.vb"
     Inherits="GraduationProject_DocHub_.Dashboardaspx"
 %>
 
@@ -37,13 +37,31 @@ body{font-family:'DM Sans',sans-serif;background:#e8eef5;color:var(--gray-900);}
     .card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);overflow:hidden;}
     .card-header{padding:14px 18px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;}
     .stat-value{font-size:24px;font-weight:700;color:var(--blue-900);}
+    .stat-label{font-size:12px;color:var(--gray-500);margin-top:2px;}
     .stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;}
     .table-wrap{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    thead th{background:var(--gray-50);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--gray-200);}
+    tbody tr{border-bottom:1px solid var(--gray-100);transition:background .1s;}
+    tbody tr:hover{background:var(--blue-50);}
+    tbody td{padding:11px 14px;color:var(--gray-700);vertical-align:middle;}
+    tbody tr:last-child{border-bottom:none;}
+    .stat-icon.purple{background:#f3e8ff;}
+    .stat-icon.orange{background:#fff7ed;}
+    .stat-icon.green{background:#dcfce7;}
+    .stat-icon.blue{background:var(--blue-100);}
     .notif-item{display:flex;gap:12px;padding:13px 18px;border-bottom:1px solid var(--gray-100);transition:background .1s;}
     .notif-item.unread{background:#f0f8ff;}
     .badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:16px;font-size:11px;font-weight:600;}
     .badge-orange{background:#fff7ed;color:#c2410c;}
+    .badge-gray{background:var(--gray-100);color:var(--gray-500);}
     .notif-dot{width:8px;height:8px;border-radius:50%;background:var(--blue-500);margin-top:5px;flex-shrink:0;}
+    .notif-dot.read{background:var(--gray-200);}
+    .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;border:none;transition:all .15s;}
+    .btn-outline{background:transparent;border:1.5px solid var(--blue-600);color:var(--blue-600);}
+    .btn-sm{padding:5px 11px;font-size:12px;}
+
+
 </style>
 <div id="page-dean-dashboard" class="page">
   <div class="app-layout">
@@ -60,21 +78,58 @@ body{font-family:'DM Sans',sans-serif;background:#e8eef5;color:var(--gray-900);}
  
         <!-- Stats -->
         <div class="stats-grid stats-4">
-          <div class="stat-card"><div class="stat-icon blue">🏛</div><div class="stat-value">3</div><div class="stat-label">Departments</div></div>
-          <div class="stat-card"><div class="stat-icon green">📄</div><div class="stat-value">312</div><div class="stat-label">Total Documents</div><div class="stat-change">↑ 24 this month</div></div>
-          <div class="stat-card"><div class="stat-icon orange">📋</div><div class="stat-value">8</div><div class="stat-label">Active Tasks</div></div>
-          <div class="stat-card"><div class="stat-icon purple">👥</div><div class="stat-value">47</div><div class="stat-label">Total Users</div></div>
+          <div class="stat-card">
+              <div class="stat-icon blue">🏛</div>
+              <div class="stat-value">3</div>
+              <div class="stat-label">Departments</div>
+          </div>
+          <div class="stat-card">
+              <div class="stat-icon green">📄</div>
+              <div class="stat-value">312</div>
+              <div class="stat-label">Total Documents</div>
+              <div class="stat-change">↑ 24 this month</div>
+          </div>
+          <div class="stat-card">
+              <div class="stat-icon orange">📋</div>
+              <div class="stat-value">8</div>
+              <div class="stat-label">Active Tasks</div>
+          </div>
+          <div class="stat-card">
+              <div class="stat-icon purple">👥</div>
+              <div class="stat-value">47</div>
+              <div class="stat-label">Total Users</div>
+          </div>
         </div>
  
         <!-- Dept Overview -->
         <div class="card" style="margin-bottom:20px;">
-          <div class="card-header"><h3>Departments Overview</h3></div>
+          <div class="card-header">
+              <h3>Departments Overview</h3>
+          </div>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Department</th><th>Programs</th><th>Documents</th><th>Active Tasks</th><th>Liaison Officer</th></tr></thead>
+              <thead>
+                  <tr>
+                      <th>Department</th>
+                      <th>Programs</th>
+                      <th>Documents</th>
+                      <th>Active Tasks</th>
+                      <th>Liaison Officer</th>
+                  </tr>
+              </thead>
               <tbody>
-                <tr><td><strong>CS</strong> — Computer Science</td><td>4 programs</td><td>128 files</td><td><span class="badge badge-orange">3 tasks</span></td><td>Ahmad (Liaison)</td></tr>
-                <tr><td><strong>BIT</strong> — Business IT</td><td>2 programs</td><td>98 files</td><td><span class="badge badge-orange">3 tasks</span></td><td>Sara (Liaison)</td></tr>
+                <tr>
+                    <td><strong>CS</strong> — Computer Science</td>
+                    <td>4 programs</td><td>128 files</td>
+                    <td><span class="badge badge-orange">3 tasks</span></td>
+                    <td>Ahmad (Liaison)</td>
+                </tr>
+                <tr>
+                    <td><strong>BIT</strong> — Business IT</td>
+                    <td>2 programs</td><td>98 files</td>
+                    <td><span class="badge badge-orange">3 tasks</span></td>
+                    <td>Sara (Liaison)</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -83,23 +138,62 @@ body{font-family:'DM Sans',sans-serif;background:#e8eef5;color:var(--gray-900);}
         <!-- Recent + Notifs -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
           <div class="card">
-            <div class="card-header"><h3>Recent Documents</h3><button class="btn btn-outline btn-sm">View All</button></div>
+            <div class="card-header">
+                <h3>Recent Documents</h3>
+                <button class="btn btn-outline btn-sm">View All</button>
+            </div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>File</th><th>Dept</th><th>Ver.</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Dept</th>
+                        <th>Ver.</th>
+                    </tr>
+
+                </thead>
                 <tbody>
-                  <tr><td><div style="display:flex;align-items:center;gap:7px;"><div class="file-icon pdf">📕</div>Syllabus BIT 2025</div></td><td><span class="badge badge-blue">BIT</span></td><td><span class="badge badge-gray">v3</span></td></tr>
-                  <tr><td><div style="display:flex;align-items:center;gap:7px;"><div class="file-icon word">📘</div>CS Annual Report</div></td><td><span class="badge badge-purple">CS</span></td><td><span class="badge badge-gray">v1</span></td></tr>
-                  <tr><td><div style="display:flex;align-items:center;gap:7px;"><div class="file-icon excel">📗</div>MIS Grade Sheet</div></td><td><span class="badge badge-green">MIS</span></td><td><span class="badge badge-gray">v2</span></td></tr>
+                  <tr>
+                      <td><div style="display:flex;align-items:center;gap:7px;">Syllabus BIT 2025</div></td>
+                      <td><span>BIT</span></td><td><span class="badge badge-gray">v3</span></td>
+                  </tr>
+                  <tr>
+                      <td><div style="display:flex;align-items:center;gap:7px;">CS Annual Report</div></td>
+                      <td><span>CS</span></td><td><span class="badge badge-gray">v1</span></td>
+                  </tr>
+                  <tr>
+                      <td><div style="display:flex;align-items:center;gap:7px;">MIS Grade Sheet</div></td>
+                      <td><span>MIS</span></td><td><span class="badge badge-gray">v2</span></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
           <div class="card">
-            <div class="card-header"><h3>Recent Notifications</h3></div>
-            <div class="notif-item unread"><div class="notif-dot"></div><div><div style="font-size:13px;color:var(--gray-700);">New task completed by <strong>Dr. Sara</strong> in BIT</div><div style="font-size:11px;color:var(--gray-400);">2 hours ago</div></div></div>
-            <div class="notif-item unread"><div class="notif-dot"></div><div><div style="font-size:13px;color:var(--gray-700);"><strong>Ahmad</strong> uploaded <em>CS Syllabus v2</em></div><div style="font-size:11px;color:var(--gray-400);">5 hours ago</div></div></div>
-            <div class="notif-item"><div class="notif-dot read"></div><div><div style="font-size:13px;color:var(--gray-700);">Task deadline approaching: <em>QA Survey</em></div><div style="font-size:11px;color:var(--gray-400);">Yesterday</div></div></div>
+            <div class="card-header">
+                <h3>Recent Notifications</h3>
+            </div>
+            <div class="notif-item unread">
+                <div class="notif-dot"></div>
+                <div>
+                    <div style="font-size:13px;color:var(--gray-700);">New task completed by <strong>Dr. Sara</strong> in BIT</div>
+                    <div style="font-size:11px;color:var(--gray-400);">2 hours ago</div>
+                </div>
+            </div>
+            <div class="notif-item unread">
+                <div class="notif-dot"></div>
+                <div>
+                    <div style="font-size:13px;color:var(--gray-700);"><strong>Ahmad</strong> uploaded <em>CS Syllabus v2</em></div>
+                    <div style="font-size:11px;color:var(--gray-400);">5 hours ago</div>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-dot read"></div>
+                <div>
+                    <div style="font-size:13px;color:var(--gray-700);">Task deadline approaching: <em>QA Survey</em></div>
+                    <div style="font-size:11px;color:var(--gray-400);">Yesterday</div>
+                </div>
+            </div>
           </div>
         </div>
       </div>

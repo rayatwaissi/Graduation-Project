@@ -1,0 +1,17 @@
+﻿# Visual Studio
+*.user
+*.suo
+.vs/
+
+# Specific files
+GraduationProject(DocHub).vbproj.user
+
+# Build folders
+bin/
+obj/
+
+# NuGet packages
+packages/
+
+# Logs
+*.log

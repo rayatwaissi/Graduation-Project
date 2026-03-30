@@ -1,4 +1,9 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/CommonBar.Master" CodeBehind="EditPage.aspx.vb" Inherits="GraduationProject_DocHub_.EditPage" %>
+﻿<%@ Page Language="vb"
+    AutoEventWireup="true"
+    MasterPageFile="~/CommonBar.Master"
+    CodeBehind="EditPage.aspx.vb"
+    Inherits="GraduationProject_DocHub_.EditPage"
+%>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <style>

@@ -124,6 +124,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -179,7 +180,6 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="CommonBar.Master" />
     <Content Include="EditPage.aspx" />
-    <Content Include="NewTask.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -303,13 +303,6 @@
     </Compile>
     <Compile Include="EditPage.aspx.vb">
       <DependentUpon>EditPage.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="NewTask.aspx.designer.vb">
-      <DependentUpon>NewTask.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="NewTask.aspx.vb">
-      <DependentUpon>NewTask.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
