@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="VB"
-    AutoEventWireup="true" 
     CodeBehind="Login.aspx.vb" 
     Inherits="GraduationProject_DocHub_.Login"
 %>

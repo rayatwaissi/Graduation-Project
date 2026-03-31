@@ -11,5 +11,86 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Dashboardaspx
+Partial Public Class Dashboard
+
+    '''<summary>
+    '''lblUserName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUserName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblUserRole control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUserRole As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDeptNum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDeptNum As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblTotalDoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalDoc As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblActiveTasks control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblActiveTasks As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblTotalUsers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalUsers As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''repDeptOverView control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents repDeptOverView As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''repRecentDoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents repRecentDoc As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''Repeater1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Repeater1 As Global.System.Web.UI.WebControls.Repeater
 End Class
