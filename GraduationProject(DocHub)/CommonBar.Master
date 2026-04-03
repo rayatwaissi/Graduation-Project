@@ -96,6 +96,8 @@
             flex: 1;
             background: #f7f9fb;
             padding: 30px;
+            min-height: calc(100vh - 70px);
+
         }
     </style>
 
