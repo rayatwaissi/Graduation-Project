@@ -16,4 +16,14 @@
     Protected Sub btnSignOut_Click(sender As Object, e As EventArgs) Handles btnSignOut.Click
         Response.Redirect("Login.aspx")
     End Sub
+
+    Protected Sub lnkNotifications_Click(sender As Object, e As EventArgs) Handles lnkNotifications.Click
+        Response.Redirect("Notifications.aspx")
+
+    End Sub
+
+    Protected Sub lnknewRequest_Click(sender As Object, e As EventArgs) Handles lnknewRequest.Click
+        Response.Redirect("NewTask.aspx")
+
+    End Sub
 End Class

@@ -180,11 +180,10 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="CommonBar.Master" />
     <Content Include="EditPage.aspx" />
-<<<<<<< Updated upstream
-=======
+
     <Content Include="NewTask.aspx" />
     <Content Include="Notifications.aspx" />
->>>>>>> Stashed changes
+
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -310,8 +309,7 @@
       <DependentUpon>EditPage.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-<<<<<<< Updated upstream
-=======
+
     <Compile Include="NewTask.aspx.designer.vb">
       <DependentUpon>NewTask.aspx</DependentUpon>
     </Compile>
@@ -326,7 +324,7 @@
       <DependentUpon>Notifications.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
->>>>>>> Stashed changes
+
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
