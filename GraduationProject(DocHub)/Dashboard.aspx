@@ -120,7 +120,8 @@
                   </tr>
               </thead>
               <tbody><!--يعني الـ Repeater + Eval بيشتغلوا مع بعض هيك:-->
-              <asp:Repeater ID="repDeptOverView" runat="server"><!--Loop-->
+                 <!-- loop -->
+              <asp:Repeater ID="repDeptOverView" runat="server">
                   <ItemTemplate>
                       <tr>
                           <td>
@@ -163,7 +164,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <asp:Repeater ID="repRecentDoc" runat="server"><!--Loop-->
+                    <!--Loop-->
+                    <asp:Repeater ID="repRecentDoc" runat="server">
                         <ItemTemplate>
                             <tr>
                                 <td>
@@ -194,7 +196,8 @@
             <div class="card-header">
                 <h3>Recent Notifications</h3>
             </div>
-            <asp:Repeater ID="Repeater1" runat="server"><!--Loop-->
+<!--Loop-->
+            <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <div class='notif-item <%# IIf(Eval("IsRead"), "", "unread") %>'>
                         <div>
