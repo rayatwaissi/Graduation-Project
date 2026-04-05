@@ -66,9 +66,9 @@
         .remember-row {
             display: flex; align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px; font-size: 12.5px;
+            margin-bottom: 20px; font-size: 12.5px; cursor: pointer;
         }
-        .remember-row label { display: flex; align-items: center; gap: 6px; color: #64748b; cursor: pointer; }
+        .remember-row label { display: flex; align-items: center; gap: 6px; color: #64748b; cursor:pointer; }
         .btn-login {
             width: 100%; padding: 11px;
             background: #1f6fb2; color: #fff;
