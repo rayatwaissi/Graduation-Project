@@ -7,33 +7,41 @@
 <html lang="en">
 <head runat="server">
      <title>DocHub</title>
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+     <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;        /* ← شيل كل الـ margin الافتراضي */
+    padding: 0;       /* ← شيل كل الـ padding الافتراضي */
+}
         body {
             font-family: 'DM Sans', sans-serif;
             margin: 0;
         }
 
         .topBar {
-            height: 80px;
+            height: 70px;
             color: white;
             background-color: #0f70b7;
-            padding: 20px 20px;
+            padding: 10px 20px;
         }
 
         .layout {
             display: flex;
+            min-height: calc(100vh - 70px); 
         }
 
         .sideBar {
-            width: 200px;
-            height: auto;
-            background-color: #0f70b7;
-            border-top: 3px outset #1167a6;
-            display: flex;
-            flex-direction: column;
+             width: 220px;
+    min-height: calc(100vh - 70px);  /* ← يمتد لآخر الصفحة */
+    background-color: #0f70b7;
+    border-top: 3px outset #1167a6;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; 
         }
 
         .menu {
@@ -93,9 +101,11 @@
             }
 
         .content {
-            flex: 1;
-            background: #f7f9fb;
-            padding: 30px;
+             flex: 1;
+    background: #f7f9fb;
+    padding: 24px;          /* ← نفس padding الداشبورد */
+    overflow: auto;
+
         }
     </style>
 
