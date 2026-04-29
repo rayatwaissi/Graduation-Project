@@ -180,10 +180,8 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="CommonBar.Master" />
     <Content Include="EditPage.aspx" />
-
     <Content Include="NewTask.aspx" />
     <Content Include="Notifications.aspx" />
-
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -260,7 +258,7 @@
     </Compile>
     <Compile Include="Login.aspx.vb">
       <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -309,7 +307,6 @@
       <DependentUpon>EditPage.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-
     <Compile Include="NewTask.aspx.designer.vb">
       <DependentUpon>NewTask.aspx</DependentUpon>
     </Compile>
@@ -324,7 +321,6 @@
       <DependentUpon>Notifications.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
