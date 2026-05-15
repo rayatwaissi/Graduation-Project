@@ -1,4 +1,4 @@
-﻿# Visual Studio
+# Visual Studio
 *.user
 *.suo
 .vs/
@@ -14,4 +14,6 @@ obj/
 packages/
 
 # Logs
-*.log
+*.logWeb.config
+
+Web.config

@@ -238,10 +238,8 @@
             justify-content: flex-end;
         }
 
-        .ReminderDiv{
-            display:flex;
-            flex:1;
-        }
+     
+
         .CreateTak h4{
             margin:0;
             padding:15px 20px;
@@ -314,42 +312,36 @@
 
             </div>
 
-            <div class="formGroup">
-                <asp:Label ID="lblTaskType" runat="server" Text="Task Type"></asp:Label>
-                <asp:DropDownList ID="ddlTaskType" runat="server" CssClass="input">
-                    <asp:ListItem Text="Select Task Type" Value="" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Upload Document" Value="upload"></asp:ListItem>
-                    <asp:ListItem Text="Edit Document" Value="edit"></asp:ListItem>
-                    <asp:ListItem Text="Review Link" Value="link"></asp:ListItem>
-                </asp:DropDownList>
-                <asp:RequiredFieldValidator ControlToValidate="ddlTaskType" InitialValue=""
-                    ErrorMessage="This field is required" Display="Dynamic" ForeColor="Red"
-                    runat="server" ValidationGroup="task" CssClass="errorText" />
-            </div>
+     
             <div class="formGroup">
                 <asp:Label ID="DeadLineDate" runat="server" Text="Deadline"></asp:Label>
                 <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="input"></asp:TextBox>
                 <asp:RequiredFieldValidator ControlToValidate="txtDate"  ErrorMessage="This field is required" Display="Dynamic" ForeColor="Red"   runat="server"   ValidationGroup="task" CssClass="errorText" />
 
             </div>
-            <div class="formGroup">
-                <asp:Label ID="ReminderPeriod" runat="server" Text="Send Reminder Every"></asp:Label>
+           <div class="formGroup">
+    <asp:Label ID="ReminderPeriod" runat="server" Text="Send Reminder Every"></asp:Label>
 
-                <div class="ReminderDiv">
-                    <asp:TextBox ID="txtEvery" runat="server" Width="50px" CssClass="input"></asp:TextBox>
+    <div style="display:flex; gap:8px; align-items:center; margin-top:10px; margin-bottom:10px;">
+        <asp:TextBox ID="txtEvery" runat="server" 
+            style="width:70px; padding:10px; border:2px solid #edf1f6; border-radius:6px; flex-shrink:0;">
+        </asp:TextBox>
 
-                    <asp:DropDownList ID="ddlReminderPeriod" runat="server" CssClass="input">
-                        <asp:ListItem Text="Select Reminder " Value="" Selected="True"></asp:ListItem>
-                        <asp:ListItem Text="Days" Value="day"></asp:ListItem>
-                        <asp:ListItem Text="Weeks" Value="week"></asp:ListItem>
-                        <asp:ListItem Text="Months" Value="month"></asp:ListItem>
-                    </asp:DropDownList>
-              
-                </div>
-                 <asp:RequiredFieldValidator ControlToValidate="txtEvery"  ErrorMessage="This field is required" Display="Dynamic" ForeColor="Red"   runat="server"   ValidationGroup="task"  CssClass="errorText"/>
-                <asp:RequiredFieldValidator  ControlToValidate="ddlReminderPeriod" InitialValue=""  ErrorMessage="This field is required" Display="Dynamic" ForeColor="Red" runat="server" ValidationGroup="task" CssClass="errorText"/>
+        <asp:DropDownList ID="ddlReminderPeriod" runat="server" 
+            style="flex:1; padding:10px; border:2px solid #edf1f6; border-radius:6px;">
+            <asp:ListItem Text="Select Reminder" Value="" Selected="True"></asp:ListItem>
+            <asp:ListItem Text="Days" Value="day"></asp:ListItem>
+            <asp:ListItem Text="Weeks" Value="week"></asp:ListItem>
+            <asp:ListItem Text="Months" Value="month"></asp:ListItem>
+        </asp:DropDownList>
+    </div>
 
-            </div>
+    <asp:RequiredFieldValidator ControlToValidate="txtEvery" ErrorMessage="This field is required" 
+        Display="Dynamic" ForeColor="Red" runat="server" ValidationGroup="task" CssClass="errorText"/>
+    <asp:RequiredFieldValidator ControlToValidate="ddlReminderPeriod" InitialValue="" 
+        ErrorMessage="This field is required" Display="Dynamic" ForeColor="Red" 
+        runat="server" ValidationGroup="task" CssClass="errorText"/>
+</div>
            
           
         </div>
@@ -389,10 +381,12 @@
                     <div class="accessdiv">
                         <div>Select Departments</div>
 
-                        <asp:CheckBoxList ID="cblDeptAccess" runat="server" CssClass="deptCheckList"
-                            RepeatDirection="Horizontal"
-                            RepeatLayout="Flow">
-                        </asp:CheckBoxList>
+                       <asp:CheckBoxList ID="cblDeptAccess" runat="server" CssClass="deptCheckList"
+    RepeatDirection="Horizontal"
+    RepeatLayout="Flow"
+    AutoPostBack="true"
+    OnSelectedIndexChanged="cblDeptAccess_SelectedIndexChanged">
+</asp:CheckBoxList>
                     </div>
 
                     <div class="accessHeader">
@@ -421,21 +415,23 @@
                                 </div>
 
                                 <div>
-                                    <asp:DropDownList ID="ddlPermission" runat="server" CssClass="ddlpermission">
-                                        <asp:ListItem>View</asp:ListItem>
-                                        <asp:ListItem>Download</asp:ListItem>
-                                        <asp:ListItem>Edit</asp:ListItem>
-                                        <asp:ListItem>View & Download</asp:ListItem>
-                                        <asp:ListItem>Download & Edit</asp:ListItem>
-                                        <asp:ListItem>Edit & View</asp:ListItem>
-                                        <asp:ListItem>Delete</asp:ListItem>
-                                    </asp:DropDownList>
+                                   <asp:DropDownList ID="ddlPermission" runat="server" CssClass="ddlpermission">
+    <asp:ListItem Value="View">View</asp:ListItem>
+    <asp:ListItem Value="Download">Download</asp:ListItem>
+    <asp:ListItem Value="Upload">Upload</asp:ListItem>
+    <asp:ListItem Value="Edit">Edit</asp:ListItem>
+    <asp:ListItem Value="DownloadEdit">Download & Edit</asp:ListItem>
+    <asp:ListItem Value="Delete">Delete</asp:ListItem>
+    <asp:ListItem Value="FullAccess">Full Access</asp:ListItem>
+</asp:DropDownList>
                                 </div>
 
                                 <div>
-                                    <asp:LinkButton runat="server" ID="lnkdelete">
-                                        <i class="fa-solid fa-rectangle-xmark" style="color:red; font-size:20px;"></i>
-                                    </asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="lnkdelete"
+    CommandArgument='<%# Eval("ID") %>'
+    OnClick="lnkDelete_Click">
+    <i class="fa-solid fa-rectangle-xmark" style="color:red; font-size:20px;"></i>
+</asp:LinkButton>
                                 </div>
                             </asp:Panel>
 
