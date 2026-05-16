@@ -26,4 +26,8 @@
         Response.Redirect("NewTask.aspx")
 
     End Sub
+
+    Protected Sub lnkmyTask_Click(sender As Object, e As EventArgs) Handles lnkmyTask.Click
+        Response.Redirect("MyTask.aspx")
+    End Sub
 End Class

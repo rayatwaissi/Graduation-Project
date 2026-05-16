@@ -182,6 +182,8 @@
     <Content Include="EditPage.aspx" />
     <Content Include="NewTask.aspx" />
     <Content Include="Notifications.aspx" />
+    <Content Include="TrackTask.aspx" />
+    <Content Include="MyTask.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -320,6 +322,20 @@
     </Compile>
     <Compile Include="Notifications.aspx.vb">
       <DependentUpon>Notifications.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="TrackTask.aspx.designer.vb">
+      <DependentUpon>TrackTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrackTask.aspx.vb">
+      <DependentUpon>TrackTask.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MyTask.aspx.designer.vb">
+      <DependentUpon>MyTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTask.aspx.vb">
+      <DependentUpon>MyTask.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
