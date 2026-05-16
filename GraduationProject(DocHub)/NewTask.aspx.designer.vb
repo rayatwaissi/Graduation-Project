@@ -86,6 +86,24 @@ Partial Public Class NewTask
     Protected WithEvents CategoryList As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblTargetDoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTargetDoc As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlTargetDoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlTargetDoc As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''DeadLineDate control.
     '''</summary>
     '''<remarks>

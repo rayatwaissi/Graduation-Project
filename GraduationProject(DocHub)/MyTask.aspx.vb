@@ -17,13 +17,13 @@ Public Class MyTask
     End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If CurrentUserID = 0 Then
+            Response.Redirect("Login.aspx")
+            Return
+        End If
         If Not IsPostBack Then
-            If CurrentUserID = 0 Then
-                Response.Redirect("Login.aspx")
-                Return
-            End If
             LoadMyTasks()
-            End If
+        End If
     End Sub
 
     Private Sub LoadMyTasks()
@@ -52,25 +52,24 @@ Public Class MyTask
         Dim pending As New DataTable
         Dim completed As New DataTable
 
-        For Each dt As DataTable In {pending, completed}
-            dt.Columns.Add("AssigneeID", GetType(Integer))
-            dt.Columns.Add("TaskID", GetType(Integer))
-            dt.Columns.Add("TaskName")
-            dt.Columns.Add("RequestedBy")
-            dt.Columns.Add("RequestedDate")
-            dt.Columns.Add("DaysLeft", GetType(Integer))
-            dt.Columns.Add("ReminderPeriod")
-            dt.Columns.Add("HasMSForm", GetType(Boolean))
-            dt.Columns.Add("Instruction")
-            dt.Columns.Add("TaskType")
-            dt.Columns.Add("TaskLink")
-            dt.Columns.Add("Deadline")
-            dt.Columns.Add("CompletedDate")
+        For Each tbl As DataTable In {pending, completed}
+            tbl.Columns.Add("AssigneeID", GetType(Integer))
+            tbl.Columns.Add("TaskID", GetType(Integer))
+            tbl.Columns.Add("TaskName")
+            tbl.Columns.Add("RequestedBy")
+            tbl.Columns.Add("RequestedDate")
+            tbl.Columns.Add("DaysLeft", GetType(Integer))
+            tbl.Columns.Add("ReminderPeriod")
+            tbl.Columns.Add("HasMSForm", GetType(Boolean))
+            tbl.Columns.Add("Instruction")
+            tbl.Columns.Add("TaskType")
+            tbl.Columns.Add("TaskLink")
+            tbl.Columns.Add("Deadline")
+            tbl.Columns.Add("CompletedDate")
         Next
 
         Using conn As New SqlConnection(ConnStr)
             Using cmd As New SqlCommand(sql, conn)
-                cmd.CommandTimeout = 60
                 cmd.Parameters.AddWithValue("@UserID", CurrentUserID)
                 conn.Open()
                 Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -78,13 +77,14 @@ Public Class MyTask
                         Dim deadline As DateTime = Convert.ToDateTime(reader("Deadline"))
                         Dim daysLeft As Integer = (deadline - DateTime.Today).Days
                         Dim deadlineStr As String = deadline.ToString("MMM d, yyyy")
-                        Dim reminderDays As Integer = Convert.ToInt32(reader("ReminderEvery"))
-                        '''''''''''''----------------------------
-                        Dim reminderStr As String = "every " & reminderDays & " days"
-                        Dim formLink As String = If(IsDBNull(reader("MicrosoftFormLink")), "", reader("MicrosoftFormLink").ToString())
+
+                        Dim formLink As String = If(IsDBNull(reader("MicrosoftFormLink")), "",
+                                                    reader("MicrosoftFormLink").ToString())
                         Dim hasMSForm As Boolean = (formLink <> "")
+                        Dim canUpload As Boolean = Convert.ToBoolean(reader("CanUpload"))
                         Dim canEdit As Boolean = Convert.ToBoolean(reader("CanEdit"))
 
+                        ' تحديد نوع التاسك
                         Dim taskType As String
                         If formLink <> "" Then
                             taskType = "link"
@@ -94,20 +94,22 @@ Public Class MyTask
                             taskType = "upload"
                         End If
 
-                        Dim requestedDate As String = Convert.ToDateTime(reader("RequestedDate")).ToString("MMM d, yyyy")
+                        Dim requestedDate As String =
+                            Convert.ToDateTime(reader("RequestedDate")).ToString("MMM d, yyyy")
+
                         Dim completedDate As String = ""
                         If Not IsDBNull(reader("CompletedAt")) Then
                             completedDate = Convert.ToDateTime(reader("CompletedAt")).ToString("MMM d, yyyy")
                         End If
 
                         Dim rowData() As Object = {
-                            reader("AssigneeID"),
-                            reader("TaskID"),
+                            CInt(reader("AssigneeID")),
+                            CInt(reader("TaskID")),
                             reader("TaskName").ToString(),
                             reader("CreatedByName").ToString(),
                             requestedDate,
                             daysLeft,
-                            reminderStr,
+                            "Every " & reader("ReminderEvery").ToString() & " days",
                             hasMSForm,
                             reader("Instructions").ToString(),
                             taskType,
@@ -126,29 +128,33 @@ Public Class MyTask
             End Using
         End Using
 
+        ' Bind البيانات
         rptPending.DataSource = pending
         rptPending.DataBind()
         rptCompleted.DataSource = completed
         rptCompleted.DataBind()
 
+        ' تحديث الأرقام
         lblPendingCount.Text = pending.Rows.Count.ToString()
         lblCompletedCount.Text = completed.Rows.Count.ToString()
         lblTotalCount.Text = (pending.Rows.Count + completed.Rows.Count).ToString()
         lblPendingHeader.Text = pending.Rows.Count.ToString()
         lblCompletedHeader.Text = completed.Rows.Count.ToString()
 
+        ' إظهار/إخفاء الـ empty states
         pnlNoPending.Visible = (pending.Rows.Count = 0)
         pnlNoCompleted.Visible = (completed.Rows.Count = 0)
         pnlCompletedTable.Visible = (completed.Rows.Count > 0)
     End Sub
 
+    ' MarkDone - بيتشغل لما الشخص يضغط "Mark as Done" على تاسك من نوع link
     Protected Sub MarkDone_Click(sender As Object, e As CommandEventArgs)
         Dim assigneeID As Integer = Convert.ToInt32(e.CommandArgument)
 
         Using conn As New SqlConnection(ConnStr)
             Dim sql = "UPDATE Task_Assignees
-                       SET Status='Done', CompletedAt=GETDATE()
-                       WHERE AssigneeID=@ID AND UserID=@UserID"
+                       SET Status = 'Done', CompletedAt = GETDATE()
+                       WHERE AssigneeID = @ID AND UserID = @UserID"
             Using cmd As New SqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@ID", assigneeID)
                 cmd.Parameters.AddWithValue("@UserID", CurrentUserID)
@@ -160,17 +166,16 @@ Public Class MyTask
         LoadMyTasks()
     End Sub
 
-
-
-    Protected Function GetActionButton(taskType As String, taskLink As String) As String
+    ' دالة مساعدة لتوليد زر الأكشن حسب نوع التاسك
+    Protected Function GetActionButton(taskType As String, taskLink As String, assigneeID As String) As String
         Select Case taskType.ToLower()
             Case "upload"
-                Return "<button class='btnUpload'>↑ Upload File</button>"
+                Return "<a href='UploadTask.aspx?assigneeID=" & assigneeID & "' class='btnUpload'>↑ Upload File</a>"
             Case "link"
-                Return String.Format("<button class='btnLink' onclick=""window.open('{0}','_blank')"">🔗 Open Link</button>",
-                                     Server.HtmlEncode(taskLink))
+                Return String.Format("<button class='btnLink' onclick=""window.open('{0}','_blank');return false;"">🔗 Open Link</button>",
+                                 Server.HtmlEncode(taskLink))
             Case "edit"
-                Return "<button class='btnEdit'>✎ Edit Document</button>"
+                Return "<a href='EditPage.aspx?assigneeID=" & assigneeID & "' class='btnEdit'>✎ Edit Document</a>"
             Case Else
                 Return ""
         End Select

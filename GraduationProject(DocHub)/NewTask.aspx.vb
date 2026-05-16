@@ -13,6 +13,7 @@ Public Class NewTask
             LoadPrograms()
             LoadCategories()
             LoadDeptCheckbox()
+            LoadDocuments()
         Else
             SaveCurrentPermissions()  ' ← أول شي بالـ PostBack، قبل أي DataBind
             If Session("DeptAccess") IsNot Nothing Then
@@ -23,6 +24,43 @@ Public Class NewTask
         End If
     End Sub
 
+    Private Sub LoadDocuments()
+        Dim roleID As Integer = CInt(Session("RoleID"))
+
+        Dim sql As String
+        Dim params As New Dictionary(Of String, Object)
+
+        If roleID <= 3 Then
+            ' Dean, Vice Dean, Vice Dean Quality, Quality Office
+            ' يشوفوا كل الدوكيمنتس
+            sql = "SELECT DocumentID, DocumentName 
+               FROM Documents 
+               WHERE IsDeleted = 0
+               ORDER BY DocumentName"
+
+        ElseIf roleID = 4 OrElse roleID = 5 Then
+            ' Department Head, Quality Liaison Officer
+            ' يشوفوا دوكيمنتس قسمهم بس
+            Dim deptID As Integer = CInt(Session("DeptID"))
+            sql = "SELECT DocumentID, DocumentName 
+               FROM Documents 
+               WHERE IsDeleted = 0 
+               AND DeptID = @DeptID
+               ORDER BY DocumentName"
+            params.Add("@DeptID", deptID)
+        Else
+            ' Staff - ما يشوف شي
+            Exit Sub
+        End If
+
+        Dim dt = DB.GetData(sql, params)
+        ddlTargetDoc.Items.Clear()
+        ddlTargetDoc.DataSource = dt
+        ddlTargetDoc.DataTextField = "DocumentName"
+        ddlTargetDoc.DataValueField = "DocumentID"
+        ddlTargetDoc.DataBind()
+        ddlTargetDoc.Items.Insert(0, New ListItem("Select Document", ""))
+    End Sub
     Private Sub LoadDepartments()
         Dim sql As String = "SELECT DeptID, DeptName FROM Departments"
         Dim dt As DataTable = DB.GetData(sql)
@@ -330,24 +368,35 @@ Public Class NewTask
 
         Dim taskID As Integer = DB.ExecuteWithID(sqlTask, taskParams)
 
-        Dim sqlAssignee As String = "INSERT INTO Task_Assignees 
-             (TaskID, UserID, CanRead, CanUpload, CanEdit, CanDownload, CanDelete, Status, UploadedDocID)
-             VALUES (@TaskID, @UserID, @CanRead, @CanUpload, @CanEdit, @CanDownload, @CanDelete, 'Pending', NULL)"
 
         For Each item As RepeaterItem In rptDeptAccess.Items
             Dim ddl As DropDownList = CType(item.FindControl("ddlPermission"), DropDownList)
             Dim perm = GetPermissions(ddl.SelectedValue)
             Dim userID As Integer = CInt(dt.Rows(item.ItemIndex)("ID"))
 
+            ' ← هاد الجديد
+            Dim targetDocID As Object = DBNull.Value
+            If perm("CanEdit") = 1 AndAlso ddlTargetDoc.SelectedValue <> "" Then
+                targetDocID = CInt(ddlTargetDoc.SelectedValue)
+            End If
+
+            Dim sqlAssignee As String = "INSERT INTO Task_Assignees 
+         (TaskID, UserID, CanRead, CanUpload, CanEdit, 
+          CanDownload, CanDelete, Status, TargetDocumentID, UploadedDocID)
+         VALUES 
+         (@TaskID, @UserID, @CanRead, @CanUpload, @CanEdit,
+          @CanDownload, @CanDelete, 'Pending', @TargetDocID, NULL)"
+
             Dim assigneeParams As New Dictionary(Of String, Object) From {
-                {"@TaskID", taskID},
-                {"@UserID", userID},
-                {"@CanRead", perm("CanRead")},
-                {"@CanUpload", perm("CanUpload")},
-                {"@CanEdit", perm("CanEdit")},
-                {"@CanDownload", perm("CanDownload")},
-                {"@CanDelete", perm("CanDelete")}
-            }
+        {"@TaskID", taskID},
+        {"@UserID", userID},
+        {"@CanRead", perm("CanRead")},
+        {"@CanUpload", perm("CanUpload")},
+        {"@CanEdit", perm("CanEdit")},
+        {"@CanDownload", perm("CanDownload")},
+        {"@CanDelete", perm("CanDelete")},
+        {"@TargetDocID", targetDocID}
+    }
             DB.Execute(sqlAssignee, assigneeParams)
         Next
 

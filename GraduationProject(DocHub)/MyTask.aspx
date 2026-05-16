@@ -95,6 +95,7 @@
     font-weight: 600;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
+    text-decoration :none;
 }
 
 .btnLink {
@@ -107,6 +108,8 @@
     font-weight: 600;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
+
+text-decoration :none;
 }
 
 .btnEdit {
@@ -119,6 +122,7 @@
     font-weight: 600;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
+    text-decoration :none;
 }
 
 .btnMark {
@@ -144,8 +148,11 @@
 
         .taskMeta {
             font-size: 12px;
-            color: #607d8b;
-            margin-bottom: 8px;
+    color: #607d8b;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
         }
 
         .taskMeta .requester {
@@ -155,10 +162,9 @@
 
         .badges {
             display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
         }
 
         .badge {
@@ -285,22 +291,25 @@
                     <div class="taskItem">
                         <div class="taskName"><%# Eval("TaskName") %></div>
                         <div class="taskMeta">
+                            <div>
                             Requested by:
                             <span class="requester"><%# Eval("RequestedBy") %></span>
                             on <%# Eval("RequestedDate") %>
-                        </div>
-                        <div class="badges">
-                            <span class='badge warn'>Due ·<%# Eval("DaysLeft") %> days left</span>
-                         
-                            <%# If(CBool(Eval("HasMSForm")), "<span class='badge formTag'>🔗 Link Attached</span>", "") %>
+</div>
+                            <div class="badges">
+    <span class='badge warn'>Due ·<%# Eval("DaysLeft") %> days left</span>
+ 
+    <%# If(CBool(Eval("HasMSForm")), "<span class='badge formTag'>🔗 Link Attached</span>", "") %>
 
+</div>
                         </div>
+                        
                         <div class="instructions">
                             <div class="instrLabel">★ Instructions</div>
                             <%# Eval("Instruction") %>
                         </div>
                        <div class="taskBtns">
-    <%# GetActionButton(Eval("TaskType").ToString(), Eval("TaskLink").ToString()) %>
+ <%# GetActionButton(Eval("TaskType").ToString(), Eval("TaskLink").ToString(), Eval("AssigneeID").ToString()) %>
 
     <asp:LinkButton
         runat="server"
