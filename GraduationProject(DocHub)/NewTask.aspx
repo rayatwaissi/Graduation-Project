@@ -311,6 +311,14 @@
                <asp:RequiredFieldValidator  ControlToValidate="CategoryList" InitialValue=""  ErrorMessage="This field is required" Display="Dynamic" ForeColor="Red" runat="server" ValidationGroup="task" CssClass="errorText"/>
 
             </div>
+            
+ 
+   <div class="formGroup" id="divTargetDoc" style="display:none; flex:1;">
+        <asp:Label ID="lblTargetDoc" runat="server" Text="Document to Edit"></asp:Label>
+        <asp:DropDownList ID="ddlTargetDoc" runat="server" CssClass="input">
+            <asp:ListItem Text="Select Document" Value=""></asp:ListItem>
+        </asp:DropDownList>
+    </div>
 
      
             <div class="formGroup">
@@ -523,6 +531,18 @@
     args.IsValid = (rows.length > 0);
         }
 
+        document.addEventListener('change', function (e) {
+            if (e.target && e.target.classList.contains('ddlpermission')) {
+                var hasEdit = Array.from(document.querySelectorAll('.ddlpermission'))
+                    .some(function (d) {
+                        return d.value === 'Edit' ||
+                            d.value === 'DownloadEdit' ||
+                            d.value === 'FullAccess';
+                    });
+                var div = document.getElementById('divTargetDoc');
+                div.style.display = hasEdit ? 'flex' : 'none';
+            }
+        }); 
     </script>
 </asp:Content>
 
