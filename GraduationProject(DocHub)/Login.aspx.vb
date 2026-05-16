@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data
 Imports System.Security.Cryptography
 Imports System.Text
 
@@ -17,36 +17,45 @@ Public Class Login
     End Function
 
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+
         Dim email As String = txtEmail.Text.Trim()
         Dim password As String = txtPassword.Text.Trim()
-        Dim hashedPassword As String = HashPassword(password)
 
-        Dim connStr As String = ConfigurationManager.ConnectionStrings("DocHubDB").ConnectionString
+        ' تشفير الباسوورد
+        Dim hashedPassword As String = HashSHA256(password)
 
-        Using conn As New SqlConnection(connStr)
-            Dim query As String = "SELECT UserID, FullName, RoleID, DeptID FROM Users 
-                                   WHERE Email = @Email AND PasswordHash = @Password"
-            Using cmd As New SqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@Email", email)
-                cmd.Parameters.AddWithValue("@Password", hashedPassword)
-                conn.Open()
+        ' جيب اليوزر من الداتابيس
+        Dim sql As String = "SELECT UserID, FullName, RoleID, DeptID FROM Users 
+                             WHERE Email = @Email AND PasswordHash = @Pass"
 
-                Dim reader As SqlDataReader = cmd.ExecuteReader()
+        Dim params As New Dictionary(Of String, Object) From {
+            {"@Email", email},
+            {"@Pass", hashedPassword}
+        }
 
-                If reader.Read() Then
-                    ' حفظ بيانات اليوزر في الـ Session
-                    Session("UserID") = reader("UserID")
-                    Session("FullName") = reader("FullName")
-                    Session("RoleID") = reader("RoleID")
-                    Session("DeptID") = reader("DeptID")
+        Dim dt As DataTable = DB.GetData(sql, params)
 
-                    Response.Redirect("Dashboard.aspx")
-                Else
-                    pnlError.Visible = True
-                    lblError.Text = "Invalid email or password."
-                End If
-            End Using
-        End Using
+        If dt.Rows.Count = 1 Then
+            ' حفظ بيانات اليوزر في Session
+            Session("UserID") = dt.Rows(0)("UserID")
+            Session("FullName") = dt.Rows(0)("FullName")
+            Session("RoleID") = dt.Rows(0)("RoleID")
+            Session("DeptID") = dt.Rows(0)("DeptID")
+
+            Response.Redirect("Dashboard.aspx")
+        Else
+            pnlError.Visible = True
+            lblError.Text = "Invalid email or password."
+        End If
+
     End Sub
+
+    Private Function HashSHA256(input As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Dim bytes As Byte() = Encoding.UTF8.GetBytes(input)
+            Dim hash As Byte() = sha256.ComputeHash(bytes)
+            Return BitConverter.ToString(hash).Replace("-", "").ToUpper()
+        End Using
+    End Function
 
 End Class
